@@ -1,9 +1,10 @@
 var dateEl = document.getElementById("currentDay");
 var timeBlock = document.getElementById("time-block");
+var textArea = document.querySelector(".text-area");
 todayDate = moment().format("dddd, MMMM Do");
 dateEl.textContent = todayDate;
 
-var events = {};
+var events = [];
 
 function colorCoder() {
   var currentTime = Number(moment().format().split("T")[1].split(":")[0]);
@@ -25,23 +26,19 @@ function colorCoder() {
 }
 
 $(".saveBtn").click(function () {
-  var textArea = document.querySelector(".text-area");
-  console.log(textArea.value);
-  textArea.value = localStorage.setItem("events", JSON.stringify(events));
+  events.push(textArea.value);
+  localStorage.setItem("events", JSON.stringify(events));
   console.log(events);
 });
-//   textArea.value.push({
-//     Time: document.querySelector(".time-block"),
-//     event: textArea,
-//   });
-//   localStorage.setItem("events", JSON.stringify(events));
-//   console.log(events);
 
-// function saveEvent() {
-//   $(".text-area").each(function () {
-//     localStorage.setItem("events", JSON.stringify(events));
-//     console.log(events);
-//   });
-// }
-
+function loadEvents() {
+  if (!events) {
+    events = {};
+  } else {
+    events = JSON.parse(localStorage.getItem("events"));
+    console.log(events);
+    textArea.value = events;
+  }
+}
+loadEvents();
 colorCoder();
