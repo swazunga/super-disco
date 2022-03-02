@@ -36,7 +36,10 @@ $("#btn-9").click(handleSave);
 $("#btn-13").click(handleSave);
 $("#btn-17").click(handleSave);
 
-function loadEvents() {}
+function loadEvents() {
+  JSON.parse(localStorage.getItem(currentTime));
+  console.log(currentTime);
+}
 
 loadEvents();
 colorCoder();
