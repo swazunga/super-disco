@@ -26,13 +26,15 @@ function colorCoder() {
 
 function handleSave(event) {
   var time = event.target.id.split("-")[1];
-  var value = $("#text-" + time).value;
+  var textEl = document.querySelector("#text-" + time);
+  var value = textEl.value;
   localStorage.setItem(time, value);
   console.log(value);
 }
 
 $("#btn-9").click(handleSave);
 $("#btn-13").click(handleSave);
+$("#btn-17").click(handleSave);
 
 function loadEvents() {}
 
