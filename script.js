@@ -4,7 +4,7 @@ var textArea = document.querySelector(".text-area");
 todayDate = moment().format("dddd, MMMM Do");
 dateEl.textContent = todayDate;
 
-var events = [];
+var eventNine = {};
 
 function colorCoder() {
   var currentTime = Number(moment().format().split("T")[1].split(":")[0]);
@@ -26,18 +26,20 @@ function colorCoder() {
 }
 
 $(".saveBtn").click(function () {
-  events.push(textArea.value);
-  localStorage.setItem("events", JSON.stringify(events));
-  console.log(events);
+  localStorage.clear();
+  eventNine.push(textArea.value);
+  localStorage.setItem("eventNine", JSON.stringify(eventNine));
+  console.log(eventNine);
 });
 
 function loadEvents() {
-  if (!events) {
-    events = {};
+  if (!eventNine) {
+    eventNine = {
+      // create an empty array here, but for objects [time, event]
+    };
   } else {
-    events = JSON.parse(localStorage.getItem("events"));
-    console.log(events);
-    textArea.value = events;
+    eventNine = JSON.parse(localStorage.getItem("eventNine"));
+    textArea.value = eventNine;
   }
 }
 loadEvents();
