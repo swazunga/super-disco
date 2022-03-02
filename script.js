@@ -4,7 +4,7 @@ var textArea = document.querySelector(".text-area");
 todayDate = moment().format("dddd, MMMM Do");
 dateEl.textContent = todayDate;
 
-var eventNine = {};
+var eventNine = [];
 
 function colorCoder() {
   var currentTime = Number(moment().format().split("T")[1].split(":")[0]);
