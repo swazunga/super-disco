@@ -8,7 +8,6 @@ dateEl.textContent = todayDate;
 function colorCoder() {
   var currentTime = Number(moment().format().split("T")[1].split(":")[0]);
 
-  console.log(currentTime);
   $(".time-block").each(function () {
     var blockHour = Number($(this).attr("id").split("-")[1]);
     if (blockHour < currentTime) {
@@ -21,6 +20,9 @@ function colorCoder() {
       $(this).removeClass("past present");
       $(this).addClass("future");
     }
+    var value = localStorage.getItem(blockHour);
+
+    $(`#text-${blockHour}`).text(value);
   });
 }
 
@@ -29,17 +31,16 @@ function handleSave(event) {
   var textEl = document.querySelector("#text-" + time);
   var value = textEl.value;
   localStorage.setItem(time, value);
-  console.log(value);
 }
 
 $("#btn-9").click(handleSave);
+$("#btn-10").click(handleSave);
+$("#btn-11").click(handleSave);
+$("#btn-12").click(handleSave);
 $("#btn-13").click(handleSave);
+$("#btn-14").click(handleSave);
+$("#btn-15").click(handleSave);
+$("#btn-16").click(handleSave);
 $("#btn-17").click(handleSave);
 
-function loadEvents() {
-  JSON.parse(localStorage.getItem(currentTime));
-  console.log(currentTime);
-}
-
-loadEvents();
 colorCoder();
